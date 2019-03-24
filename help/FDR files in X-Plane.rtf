@@ -1,0 +1,129 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 CourierNewPSMT;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;\red196\green26\blue22;
+\red170\green13\blue145;}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c0\c0;\csgenericrgb\c100000\c100000\c100000;\csgenericrgb\c77000\c10200\c8600;
+\csgenericrgb\c66500\c5200\c56900;}
+\margl1440\margr1440\vieww47180\viewh29520\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+FDR files are files that list what happened in a Flight Data Recorder (probably in a real airplane), that can be re-played in X-Plane.\
+\
+Xavion, for example, is an App on the App store that records your flights in real airplanes (or, for that matter, cars and boats as well).\
+So, if you go for a flight with Xavion, then afterwards simply have Xavion running on the same LAN as X-Plane, you can go to the\
+FILE:LOAD FLIGHT\
+menu in X-Plane and import any flights that you have flown in Xavion into FDR files on your hard drive, which X-Plane can then read and replay, which is pretty cool!\
+It is sort of cool to replay your actual flights in Xavion, and zoom out to see those flights on a global scale, including altitude.\
+\
+As well as being written by Xavion, FDR files can be made by you!\
+The FDR files are TEXT, so anyone can write them.\
+See \'93Example FDR file.fdr\'94 file in the INSTRUCTIONS folder in X-Plane to see a sample FDR file.\
+\
+Se we start off with some headers, as shown here with some sample data:\
+\
+CALI,	-120.2534,34.1345,275				\kerning1\expnd0\expndtw0 \CocoaLigature0 // calibration: give the expected ground elevation in feet at a given longitude and latitude. the FDR-reader will then offset elevation as needed to be on the ground at this location in X-Plane\expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+ACFT,myplanes/myplane.acf					// aircraft path, relative to the aircraft folder in X-Plane\
+TAIL,N12345							// tail number\
+TIME,18:00:00							// local time\
+DATE,08/10/2004						// local date\
+PRES,29.83							// local baro pressure\
+TEMP,65								// local temp in degrees F\
+WIND,230,16							// wind in degrees true and knots true\
+\
+MARK, 5,Marker at 5 seconds				// a marker to show up in replay to mark events, with time in seconds and then the marker label\
+WARN, 5,Resources/sounds/alert/1000ft.WAV		// a warning sound to play, with time in seconds and then the warning wav file\
+TEXT, 5,This is a test of the spoken text.		// a warning sound to play, with time in seconds and then the spoken text\
+EVNT, 5,10,\
+\
+\
+Then we move to the columns of data, each stated with the term \'93DATA\'94.\
+Now, looking at all this data, you will want to know what each column is for, and here is the list:\
+(and see the file \'91FDR files in X-Plane template.csv\'92 in the folder this file is in for a smaple csv for you).\
+\cf0 \cb1 \
+\pard\tx640\pardeftab640\pardirnatural\partightenfactor0
+
+\f1 \cf4 \kerning1\expnd0\expndtw0 \CocoaLigature0 " time secon" , "This is time in seconds from the beginning of the recording."\cf2 \
+\cf4 " temp deg C" , "Temperature, in degrees C, of the ambient air near the airplane, at your current altitude."\cf2 \
+\cf4 "  lon degre" , "Longitude, in degrees."\cf2 \
+\cf4 "  lat degre" , "Latitude, in degrees."\cf2 \
+\cf4 "h msl    ft" , "Height above mean sea level, in TRUE feet, regardless of any barometric pressure settings or other errors."\cf2 \
+\cf4 "radio altft" , "Radio altimeter indication."\cf2 \
+\cf4 " ailn ratio" , "This is the aileron deflection, in ratio -1.0 (left) to +1.0 (right)"\cf2 \
+\cf4 " elev ratio" , "This is the elevator deflection, in ratio -1.0 (nose down) to +1.0 (nose up)"\cf2 \
+\cf4 " rudd ratio" , "This is the rudder deflection, in ratio -1.0 (left) to +1.0 (right)"\cf2 \
+\cf4 " ptch   deg" , "Pitch in degrees, positive up."\cf2 \
+\cf4 " roll   deg" , "Roll in degrees, positive right."\cf2 \
+\cf4 " hdng  TRUE" , "Heading in degrees TRUE."\cf2 \
+\cf4 "speed  KIAS" , "Indicated speed in knots."\cf2 \
+\cf4 "  VVI ft/mn" , "Indicated vertical speed in feet per minute."\cf2 \
+\cf4 " slip   deg" , "Indicated slip in degrees, positive nose-right."\cf2 \
+\cf4 " turn   deg" , "Indicated rate-of-turn, degrees per second positive right."\cf2 \
+\cf4 " mach     #" , "Indicated Mach number."\cf2 \
+\cf4 "  AOA   deg" , "Indicated Angle of Attack."\cf2 \
+\cf4 "stall  warn" , "Stall warning, 0 to 1."\cf2 \
+\cf4 " flap  rqst" , "Flap handle position, 0.0 is retracted, 1.0 is extended."\cf2 \
+\cf4 " flap actul" , "Flap-1 deflection ratio, 0.0 is retracted, 1.0 is extended."\cf2 \
+\cf4 " slat ratio" , "Slat-1 deflection ratio, 0.0 is retracted, 1.0 is extended."\cf2 \
+\cf4 " sbrk ratio" , "Speedbrake deflection ratio, 0.0 is retracted, 1.0 is extended, 1.5 is ground-deployed."\cf2 \
+\cf4 " gear handl" , "Gear handle: 0 is up, 1 is down."\cf2 \
+\cf4 "Ngear  down" , "Gear #1 (nose?) deployment ratio: 0.0 is retracted, 1.0 is down."\cf2 \
+\cf4 "Lgear  down" , "Gear #2 (left?) deployment ratio: 0.0 is retracted, 1.0 is down."\cf2 \
+\cf4 "Rgear  down" , "Gear #3 (right?) deployment ratio: 0.0 is retracted, 1.0 is down."\cf2 \
+\cf4 " elev  trim" , "Elevator trim, -1.0 is nose down, 1.0 is nose up."\cf2 \
+\cf4 "NAV-1   frq" , "Nav-1 frequency, in a 5-digit integer form with no decimal, like 12150."\cf2 \
+\cf4 "NAV-2   frq" , "Nav-2 frequency, in a 5-digit integer form with no decimal, like 12150"\cf2 \
+\cf4 "NAV-1  type" , "Nav-1 type. NONE=0, NDB=2, VOR=3, LOC=5, ILS=10."\cf2 \
+\cf4 "NAV-2  type" , "Nav-2 type. NONE=0, NDB=2, VOR=3, LOC=5, ILS=10."\cf2 \
+\cf4 "OBS-1   deg" , "OBS-1, in degrees 0 to 360."\cf2 \
+\cf4 "OBS-2   deg" , "OBS-2, in degrees 0 to 360."\cf2 \
+\cf4 "DME-1    nm" , "0.0 means no DME found... any positive value means we are getting DME data."\cf2 \
+\cf4 "DME-2    nm" , "0.0 means no DME found... any positive value means we are getting DME data."\cf2 \
+\cf4 "NAV-1 h-def" , "Horizontal (localizer) deflection, -2.5 to 2.5 dots, positive fly right."\cf2 \
+\cf4 "NAV-2 h-def" , "Horizontal (localizer) deflection, -2.5 to 2.5 dots, positive fly right."\cf2 \
+\cf4 "NAV-1 n/t/f" , "Nav-1 NAV/TO/FROM: nav=0, to=1, from=2."\cf2 \
+\cf4 "NAV-2 n/t/f" , "Nav-1 NAV/TO/FROM: nav=0, to=1, from=2."\cf2 \
+\cf4 "NAV-1 v-def" , "Vertical (glideslope) deflection, -2.5 to 2.5 dots, positive fly up."\cf2 \
+\cf4 "NAV-2 v-def" , "Vertical (glideslope) deflection, -2.5 to 2.5 dots, positive fly up."\cf2 \
+\cf4 "   OM  over" , "Over marker, 0/1"\cf2 \
+\cf4 "   MM  over" , "Over marker, 0/1"\cf2 \
+\cf4 "   IM  over" , "Over marker, 0/1"\cf2 \
+\cf4 "f-dir   0/1" , "Flight director on, 0/1."\cf2 \
+\cf4 "f-dir  ptch" , "Flight director pitch, degrees, positive up."\cf2 \
+\cf4 "f-dir  roll" , "Flight director roll, degrees, positive right."\cf2 \
+\cf4 "ktmac   0/1" , "Autopilot is holding knots or mach number (knots=0, mach=1)"\cf2 \
+\cf4 "throt  mode" , "Auto-throttle mode: off=0, on=1"\cf2 \
+\cf4 "  hdg  mode" , "Autopilot heading mode: 0=wing-level, 1=heading, 2=localizer or other CDI"\cf2 \
+\cf4 "  alt  mode" , "Autopilot altitude mode: 3=pitch sync, 4=vvi, 5=airspeed, 6=airspeed with alt arm, 7=alt hold, 8=terrain-follow, 9=glideslope hold"\cf2 \
+\cf4 " hnav  mode" , "Localizer CDI is ARMED for capture."\cf2 \
+\cf4 "glslp  mode" , "Glideslope CDI is ARMED for capture."\cf2 \
+\cf4 " back  mode" , "ABack-course on, 0/1."\cf2 \
+\cf4 "speed selec" , "Autopilot speed selection, knots or Mach number."\cf2 \
+\cf4 "  hdg selec" , "Autopilot heading selection, degrees magnetic."\cf2 \
+\cf4 "  vvi selec" , "Autopilot vertical speed selection, feet per minute"\cf2 \
+\cf4 "  alt selec" , "Autopilot altitude selection, feet MSL indicated."\cf2 \
+\cf4 " baro in hg" , "Barometric pressure dialed into the altimeter, inches HG."\cf2 \
+\cf4 "   DH    ft" , "Decision height dialed into the radio alt, feet AGL."\cf2 \
+\cf4 "Mcaut   0/1" , "Master Caution alerting, 0/1."\cf2 \
+\cf4 "Mwarn   0/1" , "Master Warning alerting, 0/1."\cf2 \
+\cf4 " GPWS   0/1" , "Ground Proximity Warning, 0/1."\cf2 \
+\cf4 "Mmode   0-4" , "Map mode: 0 through 4 can give sme different map results."\cf2 \
+\cf4 "Mrang   0-6" , "Map range: 0 through 6 will give different map ranges."\cf2 \
+\
+\pard\tx640\pardeftab640\pardirnatural\partightenfactor0
+\cf5 4 times, once per possible engine: \cf4 "throt ratio" , "Throttle ratio 0.0 to 1.0, but emergency settings can actually exceed 1.0."\cf2 \
+\cf5 4 times, once per possible engine: \cf4 " prop cntrl" , "Propeller RPM command, per engine."\cf2 \
+\cf5 4 times, once per possible engine: \cf4 " prop   rpm" , "Propeller RPM actual, per engine."\cf2 \
+\cf5 4 times, once per possible engine: \cf4 " prop   deg" , "Propeller pitch, in degrees, per engine."\cf2 \
+\cf5 4 times, once per possible engine: \cf4 "   N1     %" , "N1, per engine."\cf2 \
+\cf5 4 times, once per possible engine: \cf4 "   N2     %" , "N2, per engine."\cf2 \
+\cf5 4 times, once per possible engine: \cf4 "  MPR  inch" , "Engine Manifold Pressure, per engine."\cf2 \
+\cf5 4 times, once per possible engine: \cf4 "  EPR   ind" , "Engine Pressure Ratio, per engine."\cf2 \
+\cf5 4 times, once per possible engine: \cf4 " torq ft*lb" , "Engine torque, per engine."\cf2 \
+\cf5 4 times, once per possible engine: \cf4 "   FF lb/hr" , "Fuel Flow, per engine."\cf2 \
+\cf5 4 times, once per possible engine: \cf4 "  ITT deg C" , "Turbine Inlet Temperature, per engine."\cf2 \
+\cf5 4 times, once per possible engine: \cf4 "  EGT deg C" , "Exhaust Gas Temperature, per engine."\cf2 \
+\cf5 4 times, once per possible engine: \cf4 "  CHT deg C" , "Cylinder Head Temperature, per engine."\cf2 \
+}
